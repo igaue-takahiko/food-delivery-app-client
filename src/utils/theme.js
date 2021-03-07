@@ -42,6 +42,7 @@ export const themeFile = {
     button: {
       marginTop: 20,
       marginBottom: 14,
+      width: "60%",
       position: "relative",
     },
     label: {
@@ -65,6 +66,10 @@ export const themeFile = {
     },
     small: {
       fontSize: 16,
+      color: "#adb0af",
+      "&:hover": {
+        color: "#157a21"
+      }
     },
     progress: {
       position: "absolute",

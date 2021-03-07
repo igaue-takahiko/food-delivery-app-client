@@ -52,7 +52,7 @@ const Header = () => {
   }
 
   return (
-    <AppBar position="static" className={classes.header}>
+    <AppBar position="sticky" className={classes.header}>
       <Toolbar>
         <Link to="/" className={classes.title}>
           <Typography variant="h6" noWrap>
