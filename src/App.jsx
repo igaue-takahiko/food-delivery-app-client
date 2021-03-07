@@ -6,6 +6,7 @@ import axios from 'axios';
 import store from './redux/store/store';
 import { logout, getUserData } from './redux/auth/actions';
 import { authTypes } from './redux/auth/types';
+import { AuthRoute, SellerRoute, UserRoute } from './utils/route';
 
 import { Header } from './components';
 
@@ -31,8 +32,8 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Signup} />
+        <AuthRoute exact path="/login" component={Login} />
+        <AuthRoute exact path="/register" component={Signup} />
       </Switch>
     </>
   );
