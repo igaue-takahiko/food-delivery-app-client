@@ -41,7 +41,7 @@ export const uiReducers = (state = initialState.ui, action) => {
     case uiTypes.CLEAR_ERRORS:
       return {
         ...state,
-        loading: true,
+        loading: false,
         errors: null,
         serverError: null,
       };

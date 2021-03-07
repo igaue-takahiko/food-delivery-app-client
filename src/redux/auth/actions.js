@@ -36,7 +36,6 @@ export const login = (userData, history) => async (dispatch) => {
       axios.defaults.headers.common["Authorization"] = jwt;
       dispatch(getUserData());
       dispatch({ type: uiTypes.CLEAR_ERRORS });
-      console.log("Authenticated, check localStorage", jwt);
       history.push("/");
     })
     .catch((error) => {

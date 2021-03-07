@@ -43,6 +43,8 @@ export const themeFile = {
       marginTop: 20,
       marginBottom: 14,
       width: "60%",
+      height: 40,
+      fontSize: "1.0rem",
       position: "relative",
     },
     label: {

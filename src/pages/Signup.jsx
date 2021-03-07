@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   makeStyles,
   Grid,
@@ -75,11 +76,15 @@ const Signup = () => {
 
   return (
     <Grid container className={classes.form}>
+      <Helmet>
+        <title>サインアップ画面</title>
+        <meta name="description" content="サインアップ画面"/>
+      </Helmet>
       <Grid item sm />
       <Grid item sm>
         <Typography variant="h3" className={classes.title}>
           Register{" "}
-          <span role="img" aria-label="Pizza Emoji">
+          <span role="img" aria-label="ピザの絵文字">
             🍕
           </span>
         </Typography>
@@ -109,7 +114,7 @@ const Signup = () => {
             className={classes.textField} id="password" type="password"
             name="password" label="パスワード(半角英数6文字以上)" fullWidth required
             helperText={passwordError}
-            error={passwordError ? true : false}
+            error={passwordError ? true : false} autoComplete="false"
             value={inputs.password} onChange={handleInputChange}
           />
           <TextField
@@ -117,7 +122,7 @@ const Signup = () => {
             name="confirmPassword" label="確認用パスワード" fullWidth required
             helperText={passwordError ? passwordError : confirmPasswordError}
             error={passwordError ? true : confirmPasswordError ? true : false}
-            value={inputs.confirmPassword} onChange={handleInputChange}
+            value={inputs.confirmPassword} onChange={handleInputChange} autoComplete="false"
           />
           {serverError && (
             <Typography variant="body2" className={classes.customError}>

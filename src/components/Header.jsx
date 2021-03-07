@@ -42,8 +42,6 @@ const Header = () => {
   const {
     account: { role },
     authenticated,
-    firstName,
-    lastName,
     address,
   } = useSelector(state => state.auth)
 
@@ -80,9 +78,6 @@ const Header = () => {
               </div>
             ) : (
               <div className={classes.buttons}>
-                <Typography className={classes.buttonStyle}>
-                  こんにちは、{firstName} {lastName}
-                </Typography>
                 <Link to="/orders">
                   <Button className={classes.buttonStyle}>
                     Orders
