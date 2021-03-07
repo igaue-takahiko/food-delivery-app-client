@@ -90,18 +90,18 @@ const Signup = () => {
         </Typography>
         <form noValidate onSubmit={handleSubmit}>
           <TextField
-            className={classes.textField} id="firstName" type="text"
-            name="firstName" label="名字" fullWidth required
-            helperText={firstNameEmptyError}
-            error={firstNameEmptyError ? true : false}
-            value={inputs.firstName} onChange={handleInputChange}
-          />
-          <TextField
             className={classes.textField} id="lastName" type="text"
-            name="lastName" label="名前" fullWidth required
+            name="lastName" label="名字" fullWidth required
             helperText={lastNameEmptyError}
             error={lastNameEmptyError ? true : false}
             value={inputs.lastName} onChange={handleInputChange}
+          />
+          <TextField
+            className={classes.textField} id="firstName" type="text"
+            name="firstName" label="名前" fullWidth required
+            helperText={firstNameEmptyError}
+            error={firstNameEmptyError ? true : false}
+            value={inputs.firstName} onChange={handleInputChange}
           />
           <TextField
             className={classes.textField} id="email" type="email"

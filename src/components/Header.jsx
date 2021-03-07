@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     flex: 1,
-    marginLeft: 60,
+    marginLeft: "5rem",
     color: "black"
   },
   buttonStyle: {
@@ -27,7 +27,8 @@ const useStyles = makeStyles(() => ({
     color: "black",
   },
   buttons: {
-    marginRight: 60,
+    justifyContent: "space-between",
+    marginRight: "2rem"
   },
   name: {
     fontStyle: "bold",
@@ -53,7 +54,7 @@ const Header = () => {
     <AppBar position="sticky" className={classes.header}>
       <Toolbar>
         <Link to="/" className={classes.title}>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h5" noWrap>
             <span>DeliveryHub</span>
           </Typography>
         </Link>
