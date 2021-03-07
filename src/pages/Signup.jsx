@@ -24,9 +24,9 @@ const Signup = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
-  const { loading, serverError, errors } = useSelector((state) => state);
+  const { loading, serverError, errors } = useSelector((state) => state.ui);
 
-  const signupHandle = (props) => {
+  const signupHandle = () => {
     const newUserData = {
       email: inputs.email,
       firstName: inputs.firstName,
@@ -58,16 +58,16 @@ const Signup = () => {
   if (errors) {
     if (typeof errors !== "string") {
       for (let i = 0; i < errors.length; i++) {
-        if (errors[i].msg.includes("First Name"))
+        if (errors[i].msg.includes("名字"))
           firstNameEmptyError = errors[i].msg;
-        if (errors[i].msg.includes("Last Name"))
+        if (errors[i].msg.includes("名前"))
           lastNameEmptyError = errors[i].msg;
-        if (errors[i].msg.includes("valid email")) emailError = errors[i].msg;
-        if (errors[i].msg.includes("Email address already"))
+        if (errors[i].msg.includes("有効なメールアドレス")) emailError = errors[i].msg;
+        if (errors[i].msg.includes("すでにそのメールアドレス"))
           emailError = errors[i].msg;
-        if (errors[i].msg.includes("least 6 characters long"))
+        if (errors[i].msg.includes("６文字以上"))
           passwordError = errors[i].msg;
-        if (errors[i].msg.includes("Passwords have to"))
+        if (errors[i].msg.includes("確認用パスワードが"))
           confirmPasswordError = errors[i].msg;
       }
     }
@@ -85,39 +85,39 @@ const Signup = () => {
         </Typography>
         <form noValidate onSubmit={handleSubmit}>
           <TextField
-            className={classes.textField} id="firstName"
+            className={classes.textField} id="firstName" type="text"
             name="firstName" label="名字" fullWidth required
             helperText={firstNameEmptyError}
             error={firstNameEmptyError ? true : false}
             value={inputs.firstName} onChange={handleInputChange}
           />
           <TextField
-            className={classes.textField} id="lastName"
+            className={classes.textField} id="lastName" type="text"
             name="lastName" label="名前" fullWidth required
             helperText={lastNameEmptyError}
             error={lastNameEmptyError ? true : false}
             value={inputs.lastName} onChange={handleInputChange}
           />
           <TextField
-            className={classes.textField} id="email"
+            className={classes.textField} id="email" type="email"
             name="email" label="メールアドレス" fullWidth required
             helperText={emailError}
             error={emailError ? true : false}
             value={inputs.email} onChange={handleInputChange}
           />
           <TextField
-            className={classes.textField} id="password"
+            className={classes.textField} id="password" type="password"
             name="password" label="パスワード(半角英数6文字以上)" fullWidth required
             helperText={passwordError}
             error={passwordError ? true : false}
             value={inputs.password} onChange={handleInputChange}
           />
           <TextField
-            className={classes.textField} id="confirmPassword"
+            className={classes.textField} id="confirmPassword" type="password"
             name="confirmPassword" label="確認用パスワード" fullWidth required
-            helperText={passwordError ? passwordError: confirmPasswordError}
+            helperText={passwordError ? passwordError : confirmPasswordError}
             error={passwordError ? true : confirmPasswordError ? true : false}
-            value={inputs.firstName} onChange={handleInputChange}
+            value={inputs.confirmPassword} onChange={handleInputChange}
           />
           {serverError && (
             <Typography variant="body2" className={classes.customError}>

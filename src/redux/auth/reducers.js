@@ -9,11 +9,13 @@ export const authReducers = (state = initialState.auth, action) => {
         ...action.payload,
         loading: false
       }
-    case authTypes.SET_UNAUTHENTICATED:
+    case authTypes.SET_AUTHENTICATED:
       return {
         ...state,
         authenticated: true
       }
+    case authTypes.SET_UNAUTHENTICATED:
+      return initialState.auth
     default:
       return state
   }

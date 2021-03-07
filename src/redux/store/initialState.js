@@ -16,6 +16,12 @@ export const initialState = {
     firstName: "",
     lastName: "",
   },
-  ui: {},
+  ui: {
+    loading: false,
+    serverError: false,
+    errors: null,
+    errorsSeller: null,
+    signUpSuccess: false,
+  },
   data: {},
 };
