@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
     textAlign: "center"
   },
   searchBer: {
-    margin: "24px 8rem"
+    margin: "24px auto"
   }
 }))
 
