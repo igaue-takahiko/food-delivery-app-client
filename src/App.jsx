@@ -8,7 +8,7 @@ import { logout, getUserData } from './redux/auth/actions';
 import { authTypes } from './redux/auth/types';
 import { AuthRoute, SellerRoute, UserRoute } from './utils/route';
 
-import { Header } from './components';
+import { Header, Footer } from './components';
 
 import { Home, Login, Signup } from './pages';
 
@@ -35,6 +35,7 @@ const App = () => {
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Signup} />
       </Switch>
+      <Footer />
     </>
   );
 }

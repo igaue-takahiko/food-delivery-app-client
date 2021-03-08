@@ -77,7 +77,7 @@ const Signup = () => {
   return (
     <Grid container className={classes.form}>
       <Helmet>
-        <title>サインアップ画面</title>
+        <title>サインアップ</title>
         <meta name="description" content="サインアップ画面"/>
       </Helmet>
       <Grid item sm />
