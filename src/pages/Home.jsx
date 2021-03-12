@@ -39,7 +39,7 @@ const Home = () => {
               <span style={{ fontSize: 40 }}>🍽</span>
             </Typography>
           </Grid>
-          <Grid item className={classes.searchBer}>
+          <Grid item className={classes.searchBer} xs={10}>
             <SearchBar page="home" action={setLocationStatus} />
           </Grid>
           <Grid item container>

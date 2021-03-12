@@ -16,8 +16,8 @@ const useStyles = makeStyles(() => ({
   },
   introduction: {
     flex: 1,
-    margin: "24px 16px 24px 0",
-    paddingLeft: 60,
+    margin: "24px 0 24px 0",
+    paddingLeft: 30,
     height: "340px",
   },
   safeFood: {
@@ -42,7 +42,9 @@ const useStyles = makeStyles(() => ({
     height: "72vh",
   },
   coverImg: {
+    objectFit: "cover",
     height: "100%",
+    width: "100%"
   },
   ctaOrder: {
     fontSize: 16,

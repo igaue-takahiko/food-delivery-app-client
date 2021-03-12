@@ -14,7 +14,7 @@ import { logout } from '../redux/auth/actions';
 const useStyles = makeStyles(() => ({
   header: {
     backgroundColor: "#e8ede1",
-    marginBottom: 10
+    marginBottom: 10,
   },
   title: {
     flex: 1,
@@ -61,9 +61,11 @@ const Header = () => {
           {authenticated ? (
             role === "ROLE_SELLER" ? (
               <div className={classes.buttons}>
-                <Typography className={classes.buttonStyle}>
-                  Dashboard
-                </Typography>
+                <Link to="/seller/dashboard">
+                  <Button className={classes.buttonStyle}>
+                    Dashboard
+                  </Button>
+                </Link>
                 <Link to="/seller/orders">
                   <Button className={classes.buttonStyle}>
                     Orders

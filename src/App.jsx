@@ -10,7 +10,16 @@ import { AuthRoute, SellerRoute, UserRoute } from './utils/route';
 
 import { Header, Footer, NotFound } from './components';
 
-import { Home, Login, Signup } from './pages';
+import {
+  Home,
+  Login,
+  Signup,
+  AddRestaurant,
+  Restaurant,
+  Cart,
+  Dashboard,
+  Orders
+} from './pages';
 
 const token = localStorage.jwt
 
@@ -34,6 +43,15 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/register" component={Signup} />
+        <AuthRoute exact path="/add-restaurant" component={AddRestaurant} />
+
+        <UserRoute exact path="/order/:restName" component={Restaurant} />
+        <UserRoute exact path="/cart" component={Cart} />
+        <UserRoute exact path="/orders" component={Orders} />
+
+        <SellerRoute exact path="/seller/dashboard" component={Dashboard} />
+        <SellerRoute exact path="/seller/orders" component={Orders} />
+
         <Route component={NotFound} />
       </Switch>
       <Footer />

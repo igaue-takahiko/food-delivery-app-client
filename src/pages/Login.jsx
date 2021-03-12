@@ -68,7 +68,7 @@ const Login = () => {
             🍔
           </span>
         </Typography>
-        <form noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           {signUpSuccess && (
             <Typography className={classes.customSuccess} variant="body2">
               アカウントが正常に登録されました。<br/>

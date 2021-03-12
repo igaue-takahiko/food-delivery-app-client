@@ -88,7 +88,7 @@ const Signup = () => {
             🍕
           </span>
         </Typography>
-        <form noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             className={classes.textField} id="lastName" type="text"
             name="lastName" label="名字" fullWidth required

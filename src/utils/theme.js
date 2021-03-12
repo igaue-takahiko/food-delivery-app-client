@@ -20,6 +20,7 @@ export const themeFile = {
     },
     form: {
       textAlign: "center",
+      padding: "0 24px"
     },
     image: {
       margin: "20px auto 20px auto",
@@ -28,7 +29,7 @@ export const themeFile = {
       margin: "10 auto 10 auto",
     },
     textField: {
-      margin: 10,
+      margin: "auto",
     },
     textSearch: {
       margin: "0px 0px 10px 0px",
@@ -42,7 +43,6 @@ export const themeFile = {
     button: {
       marginTop: 20,
       marginBottom: 14,
-      width: "60%",
       height: 40,
       fontSize: "1.0rem",
       position: "relative",
