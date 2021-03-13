@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles()
-  const { authenticated } = useSelector(state => state.auth)
+  const { authenticated } = useSelector(state => state.user)
 
   return (
     <Grid className={classes.container} container direction="row">
@@ -109,8 +109,6 @@ const Footer = () => {
           - NodeJs <br />
           - Express <br />
           - MongoDB Atlas <br />
-          - Zomato <br />
-          - Freepik <br />
         </Typography>
       </Grid>
     </Grid>

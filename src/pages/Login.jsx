@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 
 import { useForm } from '../hooks/forms';
-import { login } from '../redux/auth/actions';
+import { login } from '../redux/user/actions';
 
 const useStyles = makeStyles((theme) => ({
   ...theme.spreadThis,

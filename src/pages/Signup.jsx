@@ -11,7 +11,7 @@ import {
   CircularProgress
 } from '@material-ui/core';
 
-import { signupUser } from '../redux/auth/actions';
+import { signupUser } from '../redux/user/actions';
 import { useForm } from '../hooks/forms';
 
 const useStyles = makeStyles((theme) => ({

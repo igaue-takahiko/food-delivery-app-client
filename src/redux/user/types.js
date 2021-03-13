@@ -1,4 +1,4 @@
-export const authTypes = {
+export const userTypes = {
   LOADING_USER: "LOADING_USER",
   SET_USER: "SET_USER",
   SET_AUTHENTICATED: "SET_AUTHENTICATED",

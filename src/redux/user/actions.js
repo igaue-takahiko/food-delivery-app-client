@@ -1,5 +1,5 @@
 import axios from "axios";
-import { authTypes } from "./types";
+import { userTypes } from "./types";
 import { uiTypes } from "../ui/types";
 import { apiInstance } from "../../utils/apiInstance";
 
@@ -52,13 +52,13 @@ export const login = (userData, history) => async (dispatch) => {
 };
 
 export const getUserData = () => async (dispatch) => {
-  dispatch({ type: authTypes.LOADING_USER });
+  dispatch({ type: userTypes.LOADING_USER });
 
   await axios
     .get("/user")
     .then((res) => {
       dispatch({
-        type: authTypes.SET_USER,
+        type: userTypes.SET_USER,
         payload: res.data.result,
       });
     })
@@ -125,7 +125,7 @@ export const signupSellerFinal = (newSellerData, history) => async (
 export const logout = (history) => async (dispatch) => {
   localStorage.removeItem("jwt");
   delete axios.defaults.headers.common["Authorization"];
-  dispatch({ type: authTypes.SET_UNAUTHENTICATED });
+  dispatch({ type: userTypes.SET_UNAUTHENTICATED });
   if (history) {
     history.push("/login");
   }

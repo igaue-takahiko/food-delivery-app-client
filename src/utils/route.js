@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 export const AuthRoute = ({ component: Component, ...rest }) => {
-  const { authenticated } = useSelector((state) => state.auth);
+  const { authenticated } = useSelector((state) => state.user);
 
   return (
     <Route
@@ -19,7 +19,7 @@ export const UserRoute = ({ component: Component, ...rest }) => {
   const {
     authenticated,
     account: { role },
-  } = useSelector((state) => state.auth);
+  } = useSelector((state) => state.user);
 
   return (
     <Route
@@ -39,7 +39,7 @@ export const SellerRoute = ({ component: Component, ...rest }) => {
   const {
     authenticated,
     account: { role },
-  } = useSelector((state) => state.auth);
+  } = useSelector((state) => state.user);
 
   return (
     <Route

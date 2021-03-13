@@ -1,5 +1,9 @@
+export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as HomeHero } from './HomeHero';
+export { default as ItemCard } from './ItemCard';
+export { default as ItemDialog } from './ItemDialog';
 export { default as NotFound } from './NotFound';
-export { default as Footer } from './Footer';
+export { default as RestaurantInfo } from './RestaurantInfo';
+export { default as RestaurantItems } from './RestaurantItems';
 export { default as SearchBar } from './SearchBar';

@@ -9,7 +9,7 @@ import {
   Button,
 } from '@material-ui/core';
 
-import { logout } from '../redux/auth/actions';
+import { logout } from '../redux/user/actions';
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -44,7 +44,7 @@ const Header = () => {
     account: { role },
     authenticated,
     address,
-  } = useSelector(state => state.auth)
+  } = useSelector(state => state.user)
 
   const handleLogout = () => {
     dispatch(logout(history))

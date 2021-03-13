@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
 const Home = () => {
   const classes = useStyles()
   const { loading } = useSelector(state => state)
-  const { account: { role }, authenticated } = useSelector(state => state.auth)
+  const { account: { role }, authenticated } = useSelector(state => state.user)
 
   const [ locationStatus, setLocationStatus ] = useState(
     localStorage.getItem('location') ? true: false

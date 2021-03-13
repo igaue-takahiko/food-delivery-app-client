@@ -4,8 +4,8 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 import store from './redux/store/store';
-import { logout, getUserData } from './redux/auth/actions';
-import { authTypes } from './redux/auth/types';
+import { logout, getUserData } from './redux/user/actions';
+import { userTypes } from './redux/user/types';
 import { AuthRoute, SellerRoute, UserRoute } from './utils/route';
 
 import { Header, Footer, NotFound } from './components';
@@ -29,7 +29,7 @@ if (token) {
     store.dispatch(logout())
     window.location.href = "/login"
   } else {
-    store.dispatch({ type: authTypes.SET_AUTHENTICATED })
+    store.dispatch({ type: userTypes.SET_AUTHENTICATED })
     axios.defaults.headers.common['Authorization'] = token
     store.dispatch(getUserData())
   }

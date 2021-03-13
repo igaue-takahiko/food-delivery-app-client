@@ -1,5 +1,5 @@
 export const initialState = {
-  auth: {
+  user: {
     authenticated: false,
     loading: false,
     account: {},
@@ -23,5 +23,14 @@ export const initialState = {
     errorsSeller: null,
     signUpSuccess: false,
   },
-  data: {},
+  data: {
+    restaurants: [],
+    restaurant: {},
+    cart: [],
+    price: "",
+    loading: false,
+    addCartSuccess: null,
+    deleteSuccessItem: null,
+    orders: [],
+  },
 };
