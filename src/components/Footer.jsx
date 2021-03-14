@@ -77,9 +77,11 @@ const Footer = () => {
               DeliveryHub for Business
             </Typography>
             <Typography variant="body1" component="p" style={{ marginBottom: 24 }}>
-              何が何であるかにフォーカスを失うことなく、あなたのビジネスから多くのものを得る<br/>
+              何をするかにフォーカスを失うことなく、<br/>
+              あなたのビジネスから多くのものを得る<br/>
               最も重要なことは、お客様を喜ばせることです。
             </Typography>
+            <p style={{ marginBottom: 16 }}>店舗登録のは方はこちら</p>
             <Link to="/add-restaurant">
               <Button className={classes.buttonStyleOne}>Get Started</Button>
             </Link>

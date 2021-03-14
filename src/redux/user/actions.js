@@ -54,6 +54,9 @@ export const login = (userData, history) => async (dispatch) => {
 export const getUserData = () => async (dispatch) => {
   dispatch({ type: userTypes.LOADING_USER });
 
+  const token = localStorage.jwt;
+  apiInstance.defaults.headers.common["Authorization"] = token;
+
   await axios
     .get("/user")
     .then((res) => {
@@ -124,7 +127,7 @@ export const signupSellerFinal = (newSellerData, history) => async (
 
 export const logout = (history) => async (dispatch) => {
   localStorage.removeItem("jwt");
-  delete axios.defaults.headers.common["Authorization"];
+  delete apiInstance.defaults.headers.common["Authorization"];
   dispatch({ type: userTypes.SET_UNAUTHENTICATED });
   if (history) {
     history.push("/login");

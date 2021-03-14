@@ -4,6 +4,7 @@ export { default as HomeHero } from './HomeHero';
 export { default as ItemCard } from './ItemCard';
 export { default as ItemDialog } from './ItemDialog';
 export { default as NotFound } from './NotFound';
+export { default as RestaurantContent } from './/RestaurantContent';
 export { default as RestaurantInfo } from './RestaurantInfo';
 export { default as RestaurantItems } from './RestaurantItems';
 export { default as SearchBar } from './SearchBar';

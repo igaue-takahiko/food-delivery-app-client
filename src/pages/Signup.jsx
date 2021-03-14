@@ -140,11 +140,18 @@ const Signup = () => {
             )}
           </Button>
           <br/>
-            <Link to="/login">
-              <small className={classes.small}>
-                アカウントをお持ちに方はこちら
-              </small>
-            </Link>
+          <Link to="/login">
+            <small className={classes.small}>
+              アカウントをお持ちに方はこちら
+            </small>
+          </Link>
+          <br/>
+          <br/>
+          <Link to="/add-restaurant">
+            <small className={classes.small}>
+              店舗登録の方はこちら
+            </small>
+          </Link>
         </form>
       </Grid>
       <Grid item sm />

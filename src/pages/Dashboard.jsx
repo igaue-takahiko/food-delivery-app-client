@@ -13,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
     color: "white",
     width: "40%",
-    margin: "40px 0 0 30%",
+    height: 48,
+    margin: "40px auto",
+    fontSize: 20,
     "&:hover": {
       backgroundColor: "#5a5c5a",
     },
@@ -23,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const { errors } = useSelector(state => state.ui)
   const sellerData = useSelector(state => state.user)
   const { items } = sellerData
 
@@ -45,7 +48,7 @@ const Dashboard = () => {
   })
 
   const handleFileSelect = (e) => {
-    setImage(e.target.files)
+    setImage(e.target.files[0])
   }
 
   const handleOpen = () => {
@@ -63,12 +66,16 @@ const Dashboard = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const itemData = new FormData()
-    itemData.append("Image", image)
+    itemData.append("image", image)
     itemData.append("title", inputs.title)
     itemData.append("description", inputs.description)
     itemData.append("price", inputs.price)
     dispatch(addItem(itemData))
-    handleClose()
+    if (errors) {
+      handleClose()
+    } else {
+      setOpen(true)
+    }
   }
 
   const handleSearch = (value) => {
@@ -98,7 +105,7 @@ const Dashboard = () => {
         <meta name="description" content="店舗管理画面"/>
       </Helmet>
       <RestaurantInfo {...sellerData} />
-      <Grid container direction="row" style={{ marginTop: 40 }}>
+      <Grid container direction="row" style={{ margin: "40px 0" }}>
         <Grid item xs={12} sm={1} />
         <Grid item xs={12} sm={6}>
           <Typography
@@ -116,10 +123,10 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={12} sm={1} />
         <RestaurantItems items={filteredItemsState} />
+        <Button className={classes.button} fullWidth onClick={handleOpen}>
+          商品を追加
+        </Button>
       </Grid>
-      <Button className={classes.button} fullWidth onClick={handleOpen}>
-        追加
-      </Button>
       <ItemDialog
         open={open} inputs={inputs}
         handleClose={handleClose}

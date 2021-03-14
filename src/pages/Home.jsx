@@ -3,14 +3,16 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import { HomeHero, SearchBar } from '../components';
+import Spinner from '../utils/spinner/Spinner';
+
+import { HomeHero, SearchBar, RestaurantContent } from '../components';
 
 const useStyles = makeStyles(() => ({
   center: {
     textAlign: "center"
   },
   searchBer: {
-    margin: "24px auto"
+    margin: "32px auto"
   }
 }))
 
@@ -23,7 +25,7 @@ const Home = () => {
     localStorage.getItem('location') ? true: false
   )
 
-  const restaurantMarkup = loading
+  const restaurantMarkup = loading ? <Spinner /> : <RestaurantContent />
 
   return (
     <>
@@ -34,7 +36,7 @@ const Home = () => {
       <HomeHero />
         <Grid container direction="column">
           <Grid item>
-            <Typography className={classes.center} variant="h5" noWrap>
+            <Typography className={classes.center} variant="h5">
               DeliveryHubでお届けするお気に入りの料理&nbsp;&nbsp;
               <span style={{ fontSize: 40 }}>🍽</span>
             </Typography>
@@ -48,7 +50,7 @@ const Home = () => {
               {locationStatus ? (
                 restaurantMarkup
               ) : (
-                <Typography className={classes.center} variant="body1" noWrap>
+                <Typography className={classes.center} variant="body1">
                   近くのお店を表示するには、場所を入力してください。
                 </Typography>
               )}

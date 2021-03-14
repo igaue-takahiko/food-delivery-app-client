@@ -50,7 +50,7 @@ const ItemDialog = ({
 
   if (errorsItem) {
     for (const error of errorsItem) {
-      if (error.msg.includes("タイトルは、４文字以上でお願いします。")) {
+      if (error.msg.includes("タイトルは入力は必須です。")) {
         titleError = error.msg
       }
       if (error.msg.includes("商品説明の入力は必須です。")) {
@@ -70,19 +70,19 @@ const ItemDialog = ({
           <TextField
             className={classes.textField} label="商品名"
             name="title" placeholder="" helperText={titleError}
-            error={titleError ? true : false} fullWidth
+            error={titleError ? true : false} fullWidth type="text"
             value={inputs.title} onChange={handleInputChange}
           />
           <TextField
             className={classes.textField} label="商品の詳細説明"
             name="description" placeholder="" helperText={descError}
-            error={descError ? true : false} fullWidth
+            error={descError ? true : false} fullWidth type="text"
             value={inputs.description} onChange={handleInputChange}
           />
           <TextField
             className={classes.textField} label="価格"
-            name="title" placeholder="" helperText={priceError}
-            error={priceError ? true : false} fullWidth
+            name="price" placeholder="" helperText={priceError}
+            error={priceError ? true : false} fullWidth type="number"
             value={inputs.price} onChange={handleInputChange}
           />
           <Typography

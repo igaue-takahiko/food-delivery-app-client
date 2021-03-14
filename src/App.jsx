@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import axios from 'axios';
+import axios from "axios";
+import { apiInstance } from './utils/apiInstance';
 
-import store from './redux/store/store';
 import { logout, getUserData } from './redux/user/actions';
 import { userTypes } from './redux/user/types';
 import { AuthRoute, SellerRoute, UserRoute } from './utils/route';
+import ScrollToTop from './utils/scrollToTop';
 
 import { Header, Footer, NotFound } from './components';
 
@@ -21,24 +23,30 @@ import {
   Orders
 } from './pages';
 
-const token = localStorage.jwt
 
-if (token) {
-  const decodedToken = jwtDecode(token)
-  if (decodedToken.exp * 1000 < Date.now()) {
-    store.dispatch(logout())
-    window.location.href = "/login"
-  } else {
-    store.dispatch({ type: userTypes.SET_AUTHENTICATED })
-    axios.defaults.headers.common['Authorization'] = token
-    store.dispatch(getUserData())
-  }
-}
 
 const App = () => {
+  const dispatch = useDispatch()
+
+  const token = localStorage.jwt;
+
+  useEffect(() => {
+    if (token) {
+      const decodedToken = jwtDecode(token)
+      if (decodedToken.exp * 1000 < Date.now()) {
+        dispatch(logout())
+        window.location.href = "/login"
+      } else {
+        dispatch({ type: userTypes.SET_AUTHENTICATED })
+        dispatch(getUserData())
+      }
+    }
+  },[dispatch, token])
+
   return (
     <>
       <Header />
+      <ScrollToTop />
       <Switch>
         <Route exact path="/" component={Home} />
         <AuthRoute exact path="/login" component={Login} />

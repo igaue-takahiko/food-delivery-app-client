@@ -12,10 +12,6 @@ const useStyles = makeStyles(() => ({
     borderBottom: "2px solid #000",
     width: "44%",
   },
-  para: {
-    fontSize: "x-large",
-    marginLeft: "32%",
-  },
 }))
 
 const RestaurantInfo = (props) => {

@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: 20,
   },
   paragraph: {
-    width: 400,
+    width: "80%",
     fontSize: 14.5
   },
   cover: {

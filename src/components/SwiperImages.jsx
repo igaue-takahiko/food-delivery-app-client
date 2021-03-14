@@ -48,7 +48,7 @@ const SwiperImages = ({ images, type }) => {
   newImagesArray = images.map((image) => {
     const imageUrlSplit = image.split("\\")
     const imageUrl = imageUrlSplit[0]
-    return `../${imageUrl}`
+    return `${process.env.REACT_APP_SERVER_URL}/${imageUrl}`
   })
   maxSteps = newImagesArray.length
 
