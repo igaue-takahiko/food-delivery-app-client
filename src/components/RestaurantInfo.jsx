@@ -53,7 +53,7 @@ const RestaurantInfo = (props) => {
         <>
           <Grid container direction="row">
             <Grid item xs={false} sm={1} />
-            <Grid item xs={12} sm={6} style={{ margin: "120px 0 80px 4rem" }}>
+            <Grid item xs={12} sm={6} style={{ marginTop: "120px" }}>
               <div className={classes.border}>
                 <Typography
                   style={{ fontStyle: "bold" }}

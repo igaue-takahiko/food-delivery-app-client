@@ -32,8 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     height: 180,
-    width: "70%",
-    objectFit: "cover"
+    width: "60%",
   },
   snackbar: {
     width: "100%",

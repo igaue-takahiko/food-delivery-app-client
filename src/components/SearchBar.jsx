@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     width: "90%",
-    backgroundColor: "#edebeb",
+    backgroundColor: "#f1f1f1",
   },
   input: {
     marginLeft: theme.spacing(1),

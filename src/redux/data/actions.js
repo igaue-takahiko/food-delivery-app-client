@@ -68,8 +68,36 @@ export const addItem = (itemData) => async (dispatch) => {
     });
 };
 
-export const editItem = () => async (dispatch) => {}
+export const editItem = (itemData, itemId) => async (dispatch) => {
+  await apiInstance
+    .put(`/seller/edit-item/${itemId}`, itemData)
+    .then((res) => {
+      dispatch({
+        type: userTypes.EDIT_ITEM,
+        payload: res.data.item,
+      });
+    })
+    .catch((error) => {
+      if (error.response) {
+        dispatch({
+          type: uiTypes.SET_ERROR_ITEM,
+          payload: error.response.data,
+        });
+      } else {
+        dispatch({ type: uiTypes.SERVER_ERROR });
+      }
+    });
+};
 
-export const deleteItem = () => async (dispatch) => {}
+export const deleteItem = (itemId) => async (dispatch) => {
+  await apiInstance.delete(`/seller/delete-item/${itemId}`).then((res) => {
+    dispatch({
+      type: userTypes.DELETE_ITEM,
+      payload: itemId
+    })
+  }).catch((error) => {
+    console.log(error.response);
+  })
+};
 
-export const addToCart = () => async (dispatch) => {}
+export const addToCart = () => async (dispatch) => {};

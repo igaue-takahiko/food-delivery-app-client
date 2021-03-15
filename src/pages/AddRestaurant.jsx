@@ -312,7 +312,7 @@ const AddRestaurant = () => {
         <Grid item xs={10} sm={4} style={{ marginLeft: 32 }}>
           <Paper
             className={classes.paper}
-            style={{ backgroundColor: "#e3e3e8" }}
+            style={{ backgroundColor: "#f1f1f1" }}
             elevation={2}
           >
             <Typography
