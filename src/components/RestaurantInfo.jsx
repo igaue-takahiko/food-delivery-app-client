@@ -63,13 +63,13 @@ const RestaurantInfo = (props) => {
                   {name}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {tags}
+                  ジャンル: {tags}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  一回の配達料で ¥ {costForOne} 掛かります。
+                  一回分の最低、配達料 ¥ {(costForOne).toLocaleString()}
                 </Typography>
                 <Typography variant="body2" color="textPrimary">
-                  注文の最低額 ¥{minOrderAmount}
+                  注文の最低額 ¥{(minOrderAmount).toLocaleString()}
                 </Typography>
                 <Typography variant="body2" color="textPrimary">
                   {paymentString}
@@ -79,7 +79,7 @@ const RestaurantInfo = (props) => {
                   住所: {addressString}
                 </Typography>
                 <Typography variant="body2" color="textPrimary">
-                  電話番号: +91 {phoneNo}
+                  電話番号: +81 {phoneNo}
                 </Typography>
               </div>
             </Grid>

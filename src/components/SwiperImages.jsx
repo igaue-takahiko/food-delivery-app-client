@@ -80,7 +80,7 @@ const SwiperImages = ({ images, type }) => {
 
   return (
     <>
-      <div style={{ margin: "40px auto 24px auto" }}>
+      <div style={{ margin: "0px auto 24px auto" }}>
         <Swiper {...params}>
           {newImagesArray.map((step, index) => (
             <div key={step}>

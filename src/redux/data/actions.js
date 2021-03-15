@@ -37,7 +37,6 @@ export const fetchRestaurantsByAddress = (lat, lng) => async (dispatch) => {
       });
     })
     .catch((error) => {
-      console.log(error);
       dispatch({
         type: dataTypes.SET_RESTAURANTS,
         payload: [],
@@ -68,3 +67,9 @@ export const addItem = (itemData) => async (dispatch) => {
       }
     });
 };
+
+export const editItem = () => async (dispatch) => {}
+
+export const deleteItem = () => async (dispatch) => {}
+
+export const addToCart = () => async (dispatch) => {}

@@ -13,7 +13,7 @@ import SwiperImages from './SwiperImages';
 
 const useStyles = makeStyles(() => ({
   cardContent: {
-    marginTop: "-40px"
+    marginTop: "-30px"
   }
 }))
 const RestaurantCard = (props) => {
@@ -49,13 +49,13 @@ const RestaurantCard = (props) => {
           {name}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p" noWrap>
-          {tags}
+          {`ジャンル: ${tags}`}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {`一回分の最低、配達料 ¥${costForOne}`}
+          {`一回分の最低、配達料 ¥${(costForOne).toLocaleString()}`}
         </Typography>
         <Typography variant="body2" color="textPrimary">
-          {`注文の最低額 ¥${minOrderAmount}`}
+          {`注文の最低額 ¥${(minOrderAmount).toLocaleString()}`}
         </Typography>
         <Typography variant="body2" color="textPrimary">
           {paymentString}

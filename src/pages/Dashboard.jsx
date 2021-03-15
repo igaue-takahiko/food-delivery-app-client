@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const { errors } = useSelector(state => state.ui)
   const sellerData = useSelector(state => state.user)
   const { items } = sellerData
 
@@ -71,11 +70,7 @@ const Dashboard = () => {
     itemData.append("description", inputs.description)
     itemData.append("price", inputs.price)
     dispatch(addItem(itemData))
-    if (errors) {
-      handleClose()
-    } else {
-      setOpen(true)
-    }
+    handleClose()
   }
 
   const handleSearch = (value) => {

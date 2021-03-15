@@ -19,10 +19,10 @@ const RestaurantItems = ({ items }) => {
   const classes = useStyles()
   const { account: { role } } = useSelector(state => state.user)
   return (
-    <Grid item container direction="row">
+    <Grid item container direction="row" spacing={3}>
       <Grid item xs={12} sm={1} />
       <Grid item xs={12} sm={10}>
-        <Grid container spacing={0}>
+        <Grid container spacing={2}>
           {items ? (
             items.length > 0 ?(
               items.map((item) => (
