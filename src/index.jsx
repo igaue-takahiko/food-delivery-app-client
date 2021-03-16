@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
+import 'swiper/swiper.min.css'
 
 import store from './redux/store/store';
 import { themeFile } from './utils/theme';

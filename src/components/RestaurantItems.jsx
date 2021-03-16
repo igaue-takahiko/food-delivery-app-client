@@ -18,6 +18,7 @@ const useStyles = makeStyles(() => ({
 const RestaurantItems = ({ items }) => {
   const classes = useStyles()
   const { account: { role } } = useSelector(state => state.user)
+
   return (
     <Grid item container direction="row" style={{ margin: "24px 0" }}>
       <Grid item xs={12} sm={1} />

@@ -52,10 +52,10 @@ const Footer = () => {
               </Typography>
               <Typography variant="body1" component="p">
                 <br />
-                - About <br />
-                - Blog <br />
+                - 会社概要 <br />
+                - ブログ <br />
                 - 採用概要 <br />
-                - Contact <br />
+                - お問い合わせ <br />
               </Typography>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -106,11 +106,11 @@ const Footer = () => {
           使用した技術スタック
         </Typography>
         <Typography variant="body1" component="p" style={{ marginBottom: 32 }}>
-          - React Material UI Redux
-          <br />
+          - React Material UI Redux <br />
           - NodeJs <br />
           - Express <br />
           - MongoDB Atlas <br />
+          - Google Map API <br/>
         </Typography>
       </Grid>
     </Grid>

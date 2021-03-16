@@ -169,7 +169,7 @@ const AddRestaurant = () => {
               variant="h5"
               style={{ textAlign: "center" }}
             >
-              お店の登録
+              店舗の登録
             </Typography>
             <form noValidate onSubmit={handleSubmit}>
               <Typography
@@ -249,7 +249,7 @@ const AddRestaurant = () => {
               </div>
               <TextField
                 className={classes.textField} id="payment" label="支払い方法"
-                name="payment" placeholder="現金、クレジットのどちらか" helperText={paymentError}
+                name="payment" placeholder="現金、クレジット又はどちらも可能" helperText={paymentError}
                 error={paymentError ? true : false} fullWidth required
                 value={inputs.payment} onChange={handleInputChange}
               />
@@ -332,7 +332,7 @@ const AddRestaurant = () => {
             >
               1. あなたのお店について教えてください。 <br />
               2. あなたのメールアドレスを登録して下さい。<br />
-              3. お店様用ダッシュボードにアクセスして移動！
+              3. 店舗用ダッシュボードにて商品登録して下さい！
               <br />
               <br />
               <br />

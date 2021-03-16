@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: 240,
     display: "block",
-    maxWidth: 400,
     overflow: "hidden",
     width: "100%",
   },
@@ -69,12 +68,12 @@ const SwiperImages = ({ images, type }) => {
     spaceBetween: 30,
     loop: false,
     pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+      el: ".swiper-pagination",
+      clickable: true,
     },
     navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
   }
 

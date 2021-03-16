@@ -90,14 +90,38 @@ export const editItem = (itemData, itemId) => async (dispatch) => {
 };
 
 export const deleteItem = (itemId) => async (dispatch) => {
-  await apiInstance.delete(`/seller/delete-item/${itemId}`).then((res) => {
-    dispatch({
-      type: userTypes.DELETE_ITEM,
-      payload: itemId
+  await apiInstance
+    .delete(`/seller/delete-item/${itemId}`)
+    .then((res) => {
+      dispatch({
+        type: userTypes.DELETE_ITEM,
+        payload: itemId,
+      });
     })
-  }).catch((error) => {
-    console.log(error.response);
-  })
+    .catch((error) => {
+      console.log(error.response);
+    });
 };
 
 export const addToCart = () => async (dispatch) => {};
+
+export const getCart = () => async (dispatch) => {
+  await apiInstance.get('/cart').then((res) => {
+    dispatch({
+      type: dataTypes.SET_CART,
+      payload: res.data
+    })
+  }).catch((error) => {
+    console.log(error.response);
+    dispatch({
+      type: dataTypes.SET_CART,
+      payload: []
+    })
+  })
+}
+
+export const deleteCartItem = (itemId) => async (dispatch) => {}
+
+export const removeCartItem = (itemId) => async (dispatch) => {}
+
+export const fetchAddress = (userData, history) => async (dispatch) => {}
