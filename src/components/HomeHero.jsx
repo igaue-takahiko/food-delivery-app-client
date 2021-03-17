@@ -48,7 +48,7 @@ const useStyles = makeStyles(() => ({
   },
   ctaOrder: {
     fontSize: 16,
-    backgroundColor: "#f5f61f",
+    backgroundColor: "#FFEB3B",
     marginTop: 30
   }
 }))

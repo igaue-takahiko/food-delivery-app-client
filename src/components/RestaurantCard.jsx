@@ -34,11 +34,11 @@ const RestaurantCard = (props) => {
   let paymentString
 
   if (payment.length === 1) {
-    paymentString = `${payment[0].toLowerCase()}でお支払いできます。`
+    paymentString = `お支払い方法: ${payment[0].toLowerCase()}`
   }
 
   if (payment.length === 2) {
-    paymentString = `${payment[0].toLowerCase()} & ${payment[1].toLowerCase()}でお支払いできます。`
+    paymentString = `お支払い方法: ${payment[0].toLowerCase()} & ${payment[1].toLowerCase()}`
   }
 
   return (
@@ -51,11 +51,11 @@ const RestaurantCard = (props) => {
         <Typography variant="body2" color="textSecondary" component="p" noWrap>
           {`ジャンル: ${tags}`}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {`一回分の最低、配達料 ¥${(costForOne).toLocaleString()}`}
+        <Typography variant="body2" color="textPrimary" component="p">
+          {`最低額の配達料: ¥${(costForOne).toLocaleString()}`}
         </Typography>
         <Typography variant="body2" color="textPrimary">
-          {`注文の最低額 ¥${(minOrderAmount).toLocaleString()}`}
+          {`注文の最低額: ¥${(minOrderAmount).toLocaleString()}`}
         </Typography>
         <Typography variant="body2" color="textPrimary">
           {paymentString}

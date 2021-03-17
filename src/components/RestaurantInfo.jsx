@@ -66,10 +66,10 @@ const RestaurantInfo = (props) => {
                   ジャンル: {tags}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  一回分の最低、配達料 ¥ {(costForOne).toLocaleString()}
+                  一回分の最低、配達料 ¥ {costForOne}
                 </Typography>
                 <Typography variant="body2" color="textPrimary">
-                  注文の最低額 ¥{(minOrderAmount).toLocaleString()}
+                  注文の最低額 ¥{minOrderAmount}
                 </Typography>
                 <Typography variant="body2" color="textPrimary">
                   {paymentString}

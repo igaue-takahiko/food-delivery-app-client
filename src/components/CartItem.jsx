@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { Card, CardContent, Typography, makeStyles } from '@material-ui/core';
+import { Card, CardContent, Typography, makeStyles, Grid } from '@material-ui/core';
 import { Remove, Delete, Add } from '@material-ui/icons';
 
 import CustomButton from '../utils/CustomButton';
@@ -15,18 +15,20 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: "100%",
   },
-  buttons: {
+  buttonsContainer: {
     display: "flex",
-    flexDirection: "row",
     marginTop: "8px",
+    justifyContent: "space-between",
+  },
+  buttons: {
+    margin: "0 4px"
   },
   itemTotal: {
-    marginLeft: "62%",
-    marginTop: "8px",
+    marginTop: "16px",
   },
   imgCover: {
-    height: 184,
-    width: 270
+    height: "100%",
+    width: "100%"
   },
 }))
 
@@ -62,40 +64,46 @@ const CartItem = (props) => {
 
   return (
     <>
-      <Card className={classes.root} variant="outlined">
-        <div className={classes.imgCover}>
-          <img src={finalImageUrl} alt="商品画像" height="184" width="180" />
-        </div>
-        <div className={classes.details}>
-          <CardContent>
-            <Typography component="h5" variant="h5">
-              {title}
-            </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              {description}
-            </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              {`¥ ${(price).toLocaleString()} × 個数 ${quantity}`}
-            </Typography>
-            <div className={classes.buttons}>
-              <CustomButton tip="削除" onClick={handleRemoveItem}>
-                <Remove style={{ color: "#f44336" }} />
-              </CustomButton>
-              <CustomButton tip="カートに追加" onClick={handleAddItem}>
-                <Add style={{ color: "green" }} />
-              </CustomButton>
-              <CustomButton tip="削除" onClick={handleDeleteItem}>
-                <Delete style={{ color: "#f44336" }} />
-              </CustomButton>
-              <Typography
-                className={classes.itemTotal}
-                variant="body1" color="textPrimary"
-              >
-                {`合計金額 ¥ ${(price * quantity).toLocaleString()}`}
-              </Typography>
+      <Card variant="outlined" style={{ marginBottom: 16 }} con>
+        <Grid container  direction="row">
+          <Grid item xs={12} sm={4}>
+            <div className={classes.imgCover}>
+              <img src={finalImageUrl} alt="商品画像" height="100%" width="100%" />
             </div>
-          </CardContent>
-        </div>
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <CardContent>
+              <Typography component="h5" variant="h5" style={{ textAlign: "center" }}>
+                {title}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {description}
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                {`¥ ${(price).toLocaleString()} × ${quantity}人前`}
+              </Typography>
+              <div className={classes.buttonsContainer}>
+                <div className={classes.buttons}>
+                  <CustomButton tip="減らす" onClick={handleRemoveItem}>
+                    <Remove style={{ color: "#f44336" }} />
+                  </CustomButton>
+                  <CustomButton tip="増やす" onClick={handleAddItem}>
+                    <Add style={{ color: "green" }} />
+                  </CustomButton>
+                  <CustomButton tip="削除" onClick={handleDeleteItem}>
+                    <Delete style={{ color: "#f44336" }} />
+                  </CustomButton>
+                </div>
+                <Typography
+                  className={classes.itemTotal}
+                  variant="body1" color="textPrimary"
+                >
+                  {`合計金額 ¥ ${(price * quantity).toLocaleString()}`}
+                </Typography>
+              </div>
+            </CardContent>
+          </Grid>
+        </Grid>
       </Card>
     </>
   )

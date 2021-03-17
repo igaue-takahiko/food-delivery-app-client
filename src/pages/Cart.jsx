@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   ...theme.spreadThis,
   title: {
     margin: "40px auto",
-    display: "inline-block",
   },
   spaceTypo: {
     display: "flex",
@@ -141,7 +140,7 @@ const Cart = (props) => {
   })
 
   return (
-    <div>
+    <>
       <Helmet>
         <title>カート</title>
         <meta name="description" content="カート画面"/>
@@ -149,15 +148,17 @@ const Cart = (props) => {
       {loading ? (
         <Spinner />
       ) : (
-        <div style={{ textAlign: "center" }}>
-          <Typography className={classes.title} variant="h5">
+        < >
+          <Typography className={classes.title} variant="h4" style={{ textAlign: "center" }}>
             {step === 1 && `カートの中身は ${cartItems}個`}
-            {step === 2 && "配達状況の詳細"}
+            {step === 2 && "住所の登録"}
           </Typography>
           {step === 2 && (
-            <CustomButton tip="戻る" onClick={prevStep}>
-              <KeyboardBackspace />
-            </CustomButton>
+            <div style={{ marginLeft: "8%" }}>
+              <CustomButton tip="戻る" onClick={prevStep}>
+                <KeyboardBackspace />戻る
+              </CustomButton>
+            </div>
           )}
           <Grid container direction="row" spacing={2}>
             <Grid item sm={1}/>
@@ -210,7 +211,7 @@ const Cart = (props) => {
                 </form>
               )}
             </Grid>
-            <Grid item xs={10} sm={3}>
+            <Grid item xs={9} sm={3} style={{ margin: "0 auto" }}>
               <Paper
                 className={classes.paper}
                 style={{ backgroundColor: "#faf7f7" }}
@@ -230,7 +231,7 @@ const Cart = (props) => {
                       variant="body2" color="textPrimary"
                     >
                       <span>商品金額</span>
-                      <span>{`¥ ${(price).toLocaleString()}`}</span>
+                      <span>{`¥ ${price.toLocaleString()}`}</span>
                     </Typography>
                   )}
                   <br/>
@@ -245,7 +246,7 @@ const Cart = (props) => {
                         {item.itemId.title}
                       </span>
                       <span>
-                        {`¥ ${(item.itemId.price).toLocaleString()} × ${item.quantity}`}
+                        {`¥ ${item.itemId.price.toLocaleString()} × ${item.quantity}`}
                       </span>
                     </Typography>
                   ))}
@@ -284,9 +285,9 @@ const Cart = (props) => {
             </Grid>
             <Grid item sm={1} />
           </Grid>
-        </div>
+        </>
       )}
-    </div>
+    </>
   )
 }
 

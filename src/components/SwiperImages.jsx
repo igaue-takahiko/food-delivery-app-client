@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { makeStyles, useTheme, Button } from '@material-ui/core';
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
+import React from 'react'
+import { makeStyles } from '@material-ui/core';
 import Swiper from 'react-id-swiper';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,50 +17,18 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     borderRadius: "5%",
   },
-  buttonLeft: {
-    position: "relative",
-    top: "-132px",
-    left: "-4%",
-    color: "white",
-  },
-  buttonRight: {
-    position: "relative",
-    top: "-132px",
-    right: "-62%",
-    color: "white",
-  },
-  buttonRightRest: {
-    right: "-72.5%",
-  },
 }));
 
 const SwiperImages = ({ images, type }) => {
   const classes = useStyles()
-  const theme = useTheme()
-
-  const [ activeStep, setActiveStep ] = useState(0)
 
   let newImagesArray;
-  let maxSteps;
 
   newImagesArray = images.map((image) => {
     const imageUrlSplit = image.split("\\")
     const imageUrl = imageUrlSplit[0]
     return `${process.env.REACT_APP_SERVER_URL}/${imageUrl}`
   })
-  maxSteps = newImagesArray.length
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
 
   const params = {
     slidesPerView: 1,
@@ -83,12 +50,10 @@ const SwiperImages = ({ images, type }) => {
         <Swiper {...params}>
           {newImagesArray.map((step, index) => (
             <div key={step}>
-              {Math.abs(activeStep - index) <= 2 ? (
-                <img
-                  className={type === "home" ? classes.img : classes.imgRest}
-                  src={step} alt={step}
-                />
-              ) : null}
+              <img
+                className={type === "home" ? classes.img : classes.imgRest}
+                src={step} alt={step}
+              />
             </div>
           ))}
         </Swiper>

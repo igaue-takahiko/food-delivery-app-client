@@ -6,17 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core';
+import { ThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 import 'swiper/swiper.min.css'
 
 import store from './redux/store/store';
 import { themeFile } from './utils/theme';
 
-const theme = createMuiTheme(themeFile)
+let theme = createMuiTheme(themeFile)
+theme = responsiveFontSizes(theme)
 const helmetContext = {};
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
       <HelmetProvider context={helmetContext}>
         <ThemeProvider theme={theme}>
@@ -25,8 +25,7 @@ ReactDOM.render(
           </BrowserRouter>
         </ThemeProvider>
       </HelmetProvider>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
   document.getElementById('root')
 );
 

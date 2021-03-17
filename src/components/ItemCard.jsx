@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     flex: "1 0 auto"
   },
   cover: {
-    height: 180,
+    height: 230,
     width: "60%",
   },
   snackbar: {
@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const MuiAlert = (props) => (
-  <Alert elevation={6} variant="filled" {...props} />
-)
 
 const ItemCard = (props) => {
   const classes = useStyles()
@@ -126,6 +123,10 @@ const ItemCard = (props) => {
     handleClose()
   }
 
+  const MuiAlert = (props) => (
+  <Alert elevation={6} variant="filled" {...props} />
+)
+
   return (
     <>
       <Card className={classes.root} variant="outlined">
@@ -138,7 +139,7 @@ const ItemCard = (props) => {
               {description}
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
-              {`¥ ${(price).toLocaleString()}`}
+              {`¥ ${(price)}`}
             </Typography>
           </CardContent>
           {role === "ROLE_SELLER" ? (
@@ -156,9 +157,10 @@ const ItemCard = (props) => {
                 color: "#000",
                 width: "60%",
                 marginLeft: "20%",
-                marginBottom: "10%"
+                marginBottom: "10%",
+                backgroundColor: "#FFEB3B"
               }}
-              color="secondary" variant="contained"
+              variant="contained"
               onClick={() => {
                 handleCart()
                 handleOpenSnackBar()
@@ -197,7 +199,7 @@ const ItemCard = (props) => {
       <div className={classes.snackbar}>
         <Snackbar
           open={openSnackBar}
-          autoHideDuration={3600}
+          autoHideDuration={2000}
           onClick={handleCloseSnackBar}
         >
           <MuiAlert
