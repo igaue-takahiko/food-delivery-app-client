@@ -6,7 +6,7 @@ import { apiInstance } from "../../utils/apiInstance";
 export const signupUser = (newUserData, history) => async (dispatch) => {
   dispatch({ type: uiTypes.LOADING_UI });
 
-  await axios
+  await apiInstance
     .post("/auth/signup-user", newUserData)
     .then((res) => {
       dispatch({ type: uiTypes.SIGNUP_SUCCESS });
@@ -14,7 +14,6 @@ export const signupUser = (newUserData, history) => async (dispatch) => {
       history.push("/login");
     })
     .catch((error) => {
-      console.log(error.response.data);
       if (error.response) {
         dispatch({
           type: uiTypes.SET_ERRORS,
@@ -29,12 +28,12 @@ export const signupUser = (newUserData, history) => async (dispatch) => {
 export const login = (userData, history) => async (dispatch) => {
   dispatch({ type: uiTypes.LOADING_UI });
 
-  await axios
+  await apiInstance
     .post("/auth/login", userData)
     .then((res) => {
       const jwt = `Bearer ${res.data.token}`;
       localStorage.setItem("jwt", jwt);
-      axios.defaults.headers.common["Authorization"] = jwt;
+      apiInstance.defaults.headers.common["Authorization"] = jwt;
       dispatch(getUserData());
       dispatch({ type: uiTypes.CLEAR_ERRORS });
       history.push("/");
@@ -57,7 +56,7 @@ export const getUserData = () => async (dispatch) => {
   const token = localStorage.jwt;
   apiInstance.defaults.headers.common["Authorization"] = token;
 
-  await axios
+  await apiInstance
     .get("/user")
     .then((res) => {
       dispatch({

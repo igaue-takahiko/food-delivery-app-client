@@ -1,6 +1,7 @@
 import { dataTypes } from "./types";
 import { uiTypes } from "../ui/types";
 import { userTypes } from "../user/types";
+import axios from "axios";
 import { apiInstance } from "../../utils/apiInstance";
 import { getUserData } from "../user/actions";
 
@@ -153,10 +154,19 @@ export const getCart = () => async (dispatch) => {
     });
 };
 
-export const deleteCartItem = (itemId) => async (dispatch) => {};
+export const deleteCartItem = (itemData) => async (dispatch) => {
+  await apiInstance
+    .post("/delete-cart-item", itemData)
+    .then((res) => {
+      dispatch({ type: dataTypes.DELETE_ITEM_CART });
+      dispatch(getCart());
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
 
 export const removeCartItem = (itemId) => async (dispatch) => {
-  console.log(itemId);
   await apiInstance
     .post(`/remove-cart-item/${itemId}`)
     .then((res) => {
@@ -167,4 +177,70 @@ export const removeCartItem = (itemId) => async (dispatch) => {
     });
 };
 
-export const fetchAddress = (userData, history) => async (dispatch) => {};
+export const fetchAddress = (userData, history) => async (dispatch) => {
+  const location = `+${userData.aptName},+${userData.locality},+${userData.street},+${userData.zip}`;
+  await axios
+    .get("https://maps.googleapis.com/maps/api/geocode/json", {
+      params: {
+        address: location,
+        key: process.env.REACT_APP_GOOGLE_API_KEY,
+      },
+    })
+    .then((result) => {
+      const formattedAddress = result.data.results[0].formatted_address;
+      const lat = result.data.results[0].geometry.location.lat;
+      const lng = result.data.results[0].geometry.location.lng;
+      userData.lat = lat;
+      userData.lng = lng;
+      userData.formattedAddress = formattedAddress;
+      dispatch(addAddress(userData, history));
+    });
+};
+
+export const addAddress = (userData, history) => async (dispatch) => {
+  await apiInstance
+    .post("/user/address", userData)
+    .then((res) => {
+      dispatch(getUserData());
+      dispatch({ type: uiTypes.CLEAR_ERRORS });
+      dispatch(placeOrder(history));
+    })
+    .catch((error) => {
+      if (error.response) {
+        dispatch({
+          type: uiTypes.SET_ERRORS,
+          payload: error.response.data,
+        });
+      } else {
+        dispatch({ type: uiTypes.SERVER_ERROR });
+      }
+    });
+};
+
+export const placeOrder = (history) => async (dispatch) => {
+  await apiInstance
+    .post("/order")
+    .then((res) => {
+      dispatch(getOrders());
+      history.push("/orders");
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
+export const getOrders = () => async (dispatch) => {
+  dispatch({ type: dataTypes.LOADING_DATA });
+
+  await apiInstance
+    .get("/orders")
+    .then((res) => {
+      dispatch({
+        type: dataTypes.SET_ORDERS,
+        payload: res.data.orders,
+      });
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};

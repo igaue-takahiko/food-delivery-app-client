@@ -15,7 +15,6 @@ import {
 import { getCart, fetchAddress } from '../redux/data/actions';
 
 import { useForm } from '../hooks/forms';
-import CustomButton from '../utils/CustomButton';
 import Spinner from '../utils/spinner/Spinner';
 import { CartItem } from '../components';
 
@@ -32,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(4),
       width: "25ch",
+    },
+  },
+  goToBackButton: {
+    backgroundColor: "#157a21",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#5a5c5a",
     },
   },
   checkoutButton: {
@@ -51,7 +57,7 @@ const Cart = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
-  const { loading, cart, price } = useSelector(state => state.data)
+  const { loading, cart, price, restaurant } = useSelector(state => state.data)
   const { errors } = useSelector(state => state.ui)
 
   const [ step, setStep ] = useState(1)
@@ -65,8 +71,9 @@ const Cart = (props) => {
   let cartItems = cartPresent ? cart.length : 0
 
   if (price !== 0) {
-    deliveryCharge = 20
+    deliveryCharge = restaurant.costForOne
   }
+  console.log();
 
   //バリデーション
   let streetError = null;
@@ -114,26 +121,31 @@ const Cart = (props) => {
   const { inputs, handleInputChange } = useForm({
     street:
     props.location.state.address !== null &&
+    // eslint-disable-next-line
     props.location.state.address !== undefined
     ? props.location.state.address.street
     : "",
     locality:
     props.location.state.address !== null &&
+    // eslint-disable-next-line
     props.location.state.address !== undefined
     ? props.location.state.address.locality
     : "",
     aptName:
     props.location.state.address !== null &&
+    // eslint-disable-next-line
     props.location.state.address !== undefined
     ? props.location.state.address.aptName
     : "",
     zip:
     props.location.state.address !== null &&
+    // eslint-disable-next-line
     props.location.state.address !== undefined
     ? props.location.state.address.zip
     : "",
     phoneNo:
     props.location.state.address !== null &&
+    // eslint-disable-next-line
     props.location.state.address !== undefined
     ? props.location.state.address.phoneNo
     : "",
@@ -155,9 +167,13 @@ const Cart = (props) => {
           </Typography>
           {step === 2 && (
             <div style={{ marginLeft: "8%" }}>
-              <CustomButton tip="戻る" onClick={prevStep}>
-                <KeyboardBackspace />戻る
-              </CustomButton>
+              <Button
+                className={classes.goToBackButton} variant="contained"
+                onClick={prevStep}
+              >
+                <KeyboardBackspace />
+                {"  戻る"}
+              </Button>
             </div>
           )}
           <Grid container direction="row" spacing={2}>
@@ -178,33 +194,33 @@ const Cart = (props) => {
                   </Typography>
                   <div className={classes.address}>
                     <TextField
-                      className={classes.textField} id="zip"
+                      className={classes.textField} id="zip" type="number"
                       name="zip" label="郵便番号" fullWidth required
-                      error={zipError ? true :false} helperText={zipError}
+                      error={zipError ? true : false} helperText={zipError}
                       value={inputs.zip} onChange={handleInputChange}
-                    />
-                    <TextField
-                      className={classes.textField} id="street"
-                      name="street" label="住所" fullWidth required
-                      error={streetError ? true :false} helperText={streetError}
-                      value={inputs.street} onChange={handleInputChange}
                     />
                     <TextField
                       className={classes.textField} id="locality"
                       name="locality" label="都道府県" fullWidth required
-                      error={localityError ? true :false} helperText={localityError}
+                      error={localityError ? true : false} helperText={localityError}
                       value={inputs.locality} onChange={handleInputChange}
+                    />
+                    <TextField
+                      className={classes.textField} id="street"
+                      name="street" label="住所" fullWidth required
+                      error={streetError ? true : false} helperText={streetError}
+                      value={inputs.street} onChange={handleInputChange}
                     />
                     <TextField
                       className={classes.textField} id="aptName"
                       name="aptName" label="マンション、ビル名など" fullWidth
-                      error={aptError ? true :false} helperText={aptError}
+                      error={aptError ? true : false} helperText={aptError}
                       value={inputs.aptName} onChange={handleInputChange}
                     />
                     <TextField
                       className={classes.textField} id="phoneNo"
-                      name="phoneNo" label="マンション、ビル名など" fullWidth required
-                      error={phoneNoError ? true :false} helperText={phoneNoError}
+                      name="phoneNo" label="電話番号" fullWidth required
+                      error={phoneNoError ? true : false} helperText={phoneNoError}
                       value={inputs.phoneNo} onChange={handleInputChange}
                     />
                   </div>
@@ -219,7 +235,7 @@ const Cart = (props) => {
               >
                 <div style={{ margin: "0 18px" }}>
                   <br/>
-                  <Typography gutterBottom variant="h5" noWrap>
+                  <Typography gutterBottom variant="h5" noWrap style={{ textAlign: "center" }}>
                     {step === 1 && "合計金額"}
                     {step === 2 && "注文の概要"}
                   </Typography>
@@ -230,11 +246,10 @@ const Cart = (props) => {
                       className={classes.spaceTypo}
                       variant="body2" color="textPrimary"
                     >
-                      <span>商品金額</span>
+                      <span>商品合計</span>
                       <span>{`¥ ${price.toLocaleString()}`}</span>
                     </Typography>
                   )}
-                  <br/>
                   <br/>
                   {step === 2 && cart.map((item) => (
                     <Typography
@@ -250,11 +265,18 @@ const Cart = (props) => {
                       </span>
                     </Typography>
                   ))}
+                  <Typography
+                    className={classes.spaceTypo}
+                    variant="body2" color="textPrimary"
+                  >
+                    <span>配達料</span>
+                    <span>{`¥ ${deliveryCharge.toLocaleString()}`}</span>
+                  </Typography>
                   <hr/>
-                  <Typography gutterBottom variant="h5" noWrap>
+                  <Typography gutterBottom variant="h6" noWrap>
                     <div className={classes.spaceTypo}>
                       <span>
-                        合計
+                        総合計
                       </span>
                       <span>
                         {`¥ ${(price + deliveryCharge).toLocaleString()}`}

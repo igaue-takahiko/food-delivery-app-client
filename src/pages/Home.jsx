@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 import Spinner from '../utils/spinner/Spinner';
@@ -29,6 +30,10 @@ const Home = () => {
 
   return (
     <>
+    <Helmet>
+      <title>DeliveryHub</title>
+      <meta name="description" content="DeliveryHobのホーム画面"/>
+    </Helmet>
     {authenticated && role === "ROLE_SELLER" ? (
       <Redirect to="/seller/dashboard" />
     ) : (

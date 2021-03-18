@@ -64,7 +64,7 @@ const CartItem = (props) => {
 
   return (
     <>
-      <Card variant="outlined" style={{ marginBottom: 16 }} con>
+      <Card variant="outlined" style={{ marginBottom: 16 }}>
         <Grid container  direction="row">
           <Grid item xs={12} sm={4}>
             <div className={classes.imgCover}>

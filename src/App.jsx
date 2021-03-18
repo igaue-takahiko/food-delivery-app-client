@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import axios from "axios";
 import { apiInstance } from './utils/apiInstance';
 
 import { logout, getUserData } from './redux/user/actions';
@@ -23,25 +22,22 @@ import {
   Orders
 } from './pages';
 
-
-
 const App = () => {
   const dispatch = useDispatch()
 
   const token = localStorage.jwt;
 
-  useEffect(() => {
-    if (token) {
-      const decodedToken = jwtDecode(token)
-      if (decodedToken.exp * 1000 < Date.now()) {
-        dispatch(logout())
-        window.location.href = "/login"
-      } else {
-        dispatch({ type: userTypes.SET_AUTHENTICATED })
-        dispatch(getUserData())
-      }
+  if (token) {
+    const decodedToken = jwtDecode(token)
+    if (decodedToken.exp * 1000 < Date.now()) {
+      dispatch(logout())
+      window.location.href = "/login"
+    } else {
+      dispatch({ type: userTypes.SET_AUTHENTICATED })
+      apiInstance.defaults.headers.common["Authorization"] = token
+      dispatch(getUserData())
     }
-  },[dispatch, token])
+  }
 
   return (
     <>
