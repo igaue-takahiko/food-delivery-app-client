@@ -52,7 +52,7 @@ const RestaurantCard = (props) => {
           {`ジャンル: ${tags}`}
         </Typography>
         <Typography variant="body2" color="textPrimary" component="p">
-          {`最低額の配達料: ¥${(costForOne).toLocaleString()}`}
+          {`受注できる人数: ${(costForOne).toLocaleString()}人前から`}
         </Typography>
         <Typography variant="body2" color="textPrimary">
           {`注文の最低額: ¥${(minOrderAmount).toLocaleString()}`}

@@ -66,7 +66,7 @@ const RestaurantInfo = (props) => {
                   ジャンル: {tags}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  一回分の最低、配達料 ¥ {costForOne}
+                  受けれる人数 {costForOne}人前から
                 </Typography>
                 <Typography variant="body2" color="textPrimary">
                   注文の最低額 ¥{minOrderAmount}

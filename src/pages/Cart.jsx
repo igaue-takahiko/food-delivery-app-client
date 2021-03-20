@@ -57,7 +57,7 @@ const Cart = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
-  const { loading, cart, price, restaurant } = useSelector(state => state.data)
+  const { loading, cart, price } = useSelector(state => state.data)
   const { errors } = useSelector(state => state.ui)
 
   const [ step, setStep ] = useState(1)
@@ -71,9 +71,8 @@ const Cart = (props) => {
   let cartItems = cartPresent ? cart.length : 0
 
   if (price !== 0) {
-    deliveryCharge = restaurant.costForOne
+    deliveryCharge = 200
   }
-  console.log();
 
   //バリデーション
   let streetError = null;
@@ -120,11 +119,11 @@ const Cart = (props) => {
 
   const { inputs, handleInputChange } = useForm({
     street:
-    props.location.state.address !== null &&
-    // eslint-disable-next-line
-    props.location.state.address !== undefined
-    ? props.location.state.address.street
-    : "",
+    props.location.state.address != null &&
+      // eslint-disable-next-line
+    props.location.state.address != undefined
+      ? props.location.state.address.street
+      : "",
     locality:
     props.location.state.address !== null &&
     // eslint-disable-next-line

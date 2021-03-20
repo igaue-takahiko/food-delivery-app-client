@@ -244,3 +244,21 @@ export const getOrders = () => async (dispatch) => {
       console.log(error.response);
     });
 };
+
+export const changeOrderStatus = (orderId, body) => async (dispatch) => {
+  await apiInstance
+    .post(`/order-status/${orderId}`, body)
+    .then((res) => {
+      dispatch({
+        type: dataTypes.EDIT_STATUS,
+        payload: res.data.updateOrder,
+      });
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
+export const socketStatusUpdate = (order) => async (dispatch) => {
+  dispatch({ type: dataTypes.EDIT_STATUS, payload: order });
+};

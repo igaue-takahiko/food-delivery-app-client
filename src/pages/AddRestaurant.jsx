@@ -89,7 +89,7 @@ const AddRestaurant = () => {
       if (error.msg.includes("最小注文額の注文は必須です。")) {
         minOrderError = error.msg;
       }
-      if (error.msg.includes("コストの入力は必須です。")) {
+      if (error.msg.includes("受注できる人数の入力は必須です。")) {
         costForOneError = error.msg;
       }
       if (error.msg.includes("郵便番号の入力は必須です。")) {
@@ -198,8 +198,8 @@ const AddRestaurant = () => {
                 value={inputs.tags} onChange={handleInputChange}
               />
               <TextField
-                className={classes.textField} id="costForOne" label="配達料"
-                name="costForOne" placeholder="最低限の一回分の費用" helperText={costForOneError}
+                className={classes.textField} id="costForOne" label="受注できる人数"
+                name="costForOne" placeholder="最低限、何人前からですか？" helperText={costForOneError}
                 error={costForOneError ? true : false} fullWidth required type="number"
                 value={inputs.costForOne} onChange={handleInputChange}
               />

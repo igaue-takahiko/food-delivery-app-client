@@ -53,9 +53,6 @@ export const login = (userData, history) => async (dispatch) => {
 export const getUserData = () => async (dispatch) => {
   dispatch({ type: userTypes.LOADING_USER });
 
-  const token = localStorage.jwt;
-  apiInstance.defaults.headers.common["Authorization"] = token;
-
   await apiInstance
     .get("/user")
     .then((res) => {

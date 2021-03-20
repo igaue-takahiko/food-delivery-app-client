@@ -106,11 +106,13 @@ const Footer = () => {
           使用した技術スタック
         </Typography>
         <Typography variant="body1" component="p" style={{ marginBottom: 32 }}>
-          - React Material UI Redux <br />
+          - React Redux <br />
+          - Material UI <br/>
           - NodeJs <br />
           - Express <br />
           - MongoDB Atlas <br />
-          - Google Map API <br/>
+          - Google Map geocoding <br/>
+          - Google Map places <br/>
         </Typography>
       </Grid>
     </Grid>
