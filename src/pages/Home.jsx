@@ -8,9 +8,18 @@ import Spinner from '../utils/spinner/Spinner';
 
 import { HomeHero, SearchBar, RestaurantContent } from '../components';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   center: {
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "0.2rem"
+    }
+  },
+  centerTitle: {
+    textAlign: "center",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "0.98rem"
+    }
   },
   searchBer: {
     margin: "32px auto"
@@ -41,7 +50,7 @@ const Home = () => {
       <HomeHero />
         <Grid container direction="column">
           <Grid item>
-            <Typography className={classes.center} variant="h5">
+            <Typography className={classes.centerTitle} variant="h5">
               DeliveryHubでお届けするお気に入りの料理&nbsp;&nbsp;
               <span style={{ fontSize: 40 }}>🍽</span>
             </Typography>

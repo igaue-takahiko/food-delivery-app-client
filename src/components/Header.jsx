@@ -10,7 +10,9 @@ import {
   Button,
   IconButton,
   Drawer,
-  CssBaseline
+  List,
+  ListItem,
+  ListItemText,
 } from '@material-ui/core';
 
 import { logout } from '../redux/user/actions';
@@ -45,20 +47,17 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  drawerPaper: {
-    width: "50%",
-  },
   drawerButtonStyle: {
-    margin: "16px 32px",
+    margin: "16px 32px 16px",
     color: "black",
   },
-  toolbar: theme.mixins.toolbar
 }))
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const history = useHistory()
+  const { container } = props
   const {
     account: { role },
     authenticated,
@@ -68,7 +67,7 @@ const Header = () => {
   const [ openDrawer, setOpenDrawer ] = useState(false)
 
   const handleLogout = () => {
-    setOpenDrawer(!openDrawer)
+    setOpenDrawer(false)
     dispatch(logout(history))
   }
 
@@ -93,15 +92,16 @@ const Header = () => {
           aria-label="Menu Items"
           aria-controls="menu-appbar"
           aria-haspopup="true"
+          edge="start"
         >
           <MenuIcon />
         </IconButton>
         <Drawer
-          className={classes.drawerPaper}
           open={openDrawer} anchor="right"
           onClose={handleDrawerToggle}
-          variant="temporary"
+          container={container}
           ModalProps={{ keepMounted: true }}
+          variant="temporary"
         >
           {authenticated ? (
             role === "ROLE_SELLER" ? (
@@ -154,23 +154,25 @@ const Header = () => {
               </>
             )
           ) : (
-            <>
+            <List>
               <Link to="/login">
-                <Button
+                <ListItem
+                  button
                   className={classes.drawerButtonStyle} onClick={handleDrawerToggle}
                 >
                   Login
-                </Button>
+                </ListItem>
               </Link>
               <Link to="/register">
-                <Button
-                  className={classes.drawerButtonStyle} variant="outlined"
+                <ListItem
+                  button
+                  className={classes.drawerButtonStyle}
                   onClick={handleDrawerToggle}
                 >
-                  signup
-                </Button>
+                  <ListItemText primary="signin" />
+                </ListItem>
               </Link>
-            </>
+            </List>
           )}
         </Drawer>
           {authenticated ? (
