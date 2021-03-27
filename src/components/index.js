@@ -1,6 +1,6 @@
 export { default as CartItem } from "./CartItem";
 export { default as Footer } from "./Footer";
-export { default as Header } from "./Header";
+export { default as Header } from "./header/Header";
 export { default as HomeHero } from "./HomeHero";
 export { default as OrderCard } from "./OrderCard";
 export { default as ItemCard } from "./ItemCard";

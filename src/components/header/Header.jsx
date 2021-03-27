@@ -9,13 +9,10 @@ import {
   Typography,
   Button,
   IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
 } from '@material-ui/core';
 
-import { logout } from '../redux/user/actions';
+import { logout } from '../../redux/user/actions';
+import ClosableDrawer from './ClosableDrawer';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -46,10 +43,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
-  },
-  drawerButtonStyle: {
-    margin: "16px 32px 16px",
-    color: "black",
   },
 }))
 
@@ -96,85 +89,6 @@ const Header = (props) => {
         >
           <MenuIcon />
         </IconButton>
-        <Drawer
-          open={openDrawer} anchor="right"
-          onClose={handleDrawerToggle}
-          container={container}
-          ModalProps={{ keepMounted: true }}
-          variant="temporary"
-        >
-          {authenticated ? (
-            role === "ROLE_SELLER" ? (
-              <>
-                <Link to="/seller/dashboard">
-                  <Button
-                    className={classes.drawerButtonStyle} onClick={handleDrawerToggle}
-                  >
-                    Dashboard
-                  </Button>
-                </Link>
-                <Link to="/seller/orders">
-                  <Button
-                    className={classes.drawerButtonStyle} onClick={handleDrawerToggle}
-                  >
-                    Orders
-                  </Button>
-                </Link>
-                <Button
-                  className={classes.drawerButtonStyle}
-                  variant="outlined"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Link to="/orders">
-                  <Button
-                    className={classes.drawerButtonStyle} onClick={handleDrawerToggle}
-                  >
-                    Orders
-                  </Button>
-                </Link>
-                <Link to={{ pathname: "/cart", state: { address } }}>
-                  <Button
-                    className={classes.drawerButtonStyle} onClick={handleDrawerToggle}
-                  >
-                    Cart
-                  </Button>
-                </Link>
-                <Button
-                  className={classes.drawerButtonStyle}
-                  variant="outlined"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </>
-            )
-          ) : (
-            <List>
-              <Link to="/login">
-                <ListItem
-                  button
-                  className={classes.drawerButtonStyle} onClick={handleDrawerToggle}
-                >
-                  Login
-                </ListItem>
-              </Link>
-              <Link to="/register">
-                <ListItem
-                  button
-                  className={classes.drawerButtonStyle}
-                  onClick={handleDrawerToggle}
-                >
-                  <ListItemText primary="signin" />
-                </ListItem>
-              </Link>
-            </List>
-          )}
-        </Drawer>
           {authenticated ? (
             role === "ROLE_SELLER" ? (
               <div className={classes.buttons}>
@@ -232,6 +146,11 @@ const Header = (props) => {
             </div>
           )}
       </Toolbar>
+      <ClosableDrawer
+        container={container} setOpenDrawer={setOpenDrawer}
+        handleLogout={handleLogout} handleDrawerToggle={handleDrawerToggle}
+        openDrawer={openDrawer}
+      />
     </AppBar>
   )
 }
